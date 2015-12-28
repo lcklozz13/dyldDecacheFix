@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "48F7B7A3997F5244A7EAC67425771B039295E9D0",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "48F7B7A3997F5244A7EAC67425771B039295E9D0" : 0,
+    "A9C7F670FBF9C18AA84225A3FC8439C7BDA9FC59" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "7DDA6BE0-3AC0-49F9-B2A8-B94C0371798D",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "48F7B7A3997F5244A7EAC67425771B039295E9D0" : "dyldDecacheFix\/",
+    "A9C7F670FBF9C18AA84225A3FC8439C7BDA9FC59" : ""
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "dyldDecacheFix",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "dyldDecacheFix.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/Naville\/dyldDecacheFix.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "48F7B7A3997F5244A7EAC67425771B039295E9D0"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/opensource-apple\/dyld.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "A9C7F670FBF9C18AA84225A3FC8439C7BDA9FC59"
+    }
+  ]
+}

@@ -14,11 +14,22 @@ int main(int argc, const char * argv[]) {
         NSString* InputPath=[NSString stringWithUTF8String:argv[1]];
         NSData* InputData=[NSData dataWithContentsOfFile:InputPath];
         struct fat_header* fatheader=(struct fat_header*)InputData.bytes;
+        NSData* archData;
+        if(fatheader->magic!=FAT_CIGAM&&fatheader->magic!=FAT_MAGIC){
+            
+            NSLog(@"Not A Fat Mach-O");
+            NSLog(@"Not A Fat Mach-O");
+            archData=[InputData copy];
+        }
+        else{
+            struct fat_arch* fatArch=(struct fat_arch*)[InputData subdataWithRange:NSMakeRange(0+sizeof(struct fat_header), InputData.length-sizeof(struct fat_header))].bytes;
+            int ArchSize=CFSwapInt32(fatArch->size);
+            int ArchOffSet=CFSwapInt32(fatArch->offset);
+            archData=[InputData subdataWithRange:NSMakeRange(ArchOffSet, ArchSize)];
+            
+            
+        }
         //int narchs=CFSwapInt32(fatheader->nfat_arch);
-        struct fat_arch* fatArch=(struct fat_arch*)[InputData subdataWithRange:NSMakeRange(0+sizeof(struct fat_header), InputData.length-sizeof(struct fat_header))].bytes;
-        int ArchSize=CFSwapInt32(fatArch->size);
-        int ArchOffSet=CFSwapInt32(fatArch->offset);
-        NSData* archData=[InputData subdataWithRange:NSMakeRange(ArchOffSet, ArchSize)];
         struct mach_header* sliceHeader=(struct mach_header*)archData.bytes;
         [archData writeToFile:[InputPath stringByAppendingString:@"SingleArch"] atomically:YES];
         NSFileHandle* nsfh=[NSFileHandle fileHandleForUpdatingAtPath:[InputPath stringByAppendingString:@"SingleArch"]];
@@ -53,6 +64,7 @@ int main(int argc, const char * argv[]) {
                 
                 [wholeArchData replaceBytesInRange:NSMakeRange(currentOffSet, sizeof(currentLoadCommand->cmd)) withBytes:"\x2A\x00\x00\x00"];
                 //Change LC_SEGMENT_SPLIT_INFO to LC_SOURCE_VERSION.(For now),Mach-O allows more than one LC_SEGMENT_SPLIT_INFO
+                NSLog(@"Replaced LC_SEGMENT_SPLIT_INFO to LC_SOURCE_VERSION");
                 [wholeArchData writeToFile:InputPath atomically:YES];
                 [[NSFileManager defaultManager] removeItemAtPath:[InputPath stringByAppendingString:@"SingleArch"] error:nil];
                 exit(0);
@@ -69,7 +81,7 @@ int main(int argc, const char * argv[]) {
             
         }
         
-        
+        NSLog(@"LC_SEGMENT_SPLIT_INFO NOT FOUND");
         
         
         

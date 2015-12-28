@@ -8,3 +8,16 @@ Serval Important Segments,For example:
 >>__DATA/__objc_imageinfo
 
 was moved to __DATA_const and __DATA_dirty,so class-dump can't recognize them
+FIX:
+Directly copy DATA in __DATA_const and __DATA_dirty(not including the segment header itself)right after the last sect in __DATA,alter __DATA's:
+>command size
+
+>VM Size
+
+>file Size
+
+>Number of sections
+
+Then put two new LC_SEGMENT right after the new __DATA to fill the space.
+
+>>./FoundationForPoke IS A HAND-CRAFTED DEMO FOR THE RESULT,ALSO THE ADDRESS CALCULATION WENT WRONG SOMEWHERE

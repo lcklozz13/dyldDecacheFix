@@ -5,4 +5,5 @@ This is a simple fix by replacing LC_SEGMENT_SPLIT_INFO to LC_SOURCE_VERSION. St
 Issues:
 Serval Important Segments,For example:
 >>__DATA/__objc_imageinfo
+
 was moved to __DATA_const and __DATA_dirty,so class-dump can't recognize them

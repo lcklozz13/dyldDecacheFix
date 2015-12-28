@@ -63,7 +63,7 @@ int main(int argc, const char * argv[]) {
                 NSMutableData* wholeArchData=[[nsfh readDataToEndOfFile] mutableCopy];
                 
                 [wholeArchData replaceBytesInRange:NSMakeRange(currentOffSet, sizeof(currentLoadCommand->cmd)) withBytes:"\x2A\x00\x00\x00"];
-                //Change LC_SEGMENT_SPLIT_INFO to LC_SOURCE_VERSION.(For now),Mach-O allows more than one LC_SEGMENT_SPLIT_INFO
+                //Change LC_SEGMENT_SPLIT_INFO to LC_SOURCE_VERSION.(For now),Mach-O allows more than one LC_SOURCE_VERSION
                 NSLog(@"Replaced LC_SEGMENT_SPLIT_INFO to LC_SOURCE_VERSION");
                 [wholeArchData writeToFile:InputPath atomically:YES];
                 [[NSFileManager defaultManager] removeItemAtPath:[InputPath stringByAppendingString:@"SingleArch"] error:nil];

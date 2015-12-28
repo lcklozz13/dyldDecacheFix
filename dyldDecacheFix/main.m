@@ -81,6 +81,8 @@ int main(int argc, const char * argv[]) {
             
         }
         
+        [[NSFileManager defaultManager] removeItemAtPath:[InputPath stringByAppendingString:@"SingleArch"] error:nil];
+        
         NSLog(@"LC_SEGMENT_SPLIT_INFO NOT FOUND");
         
         

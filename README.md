@@ -18,6 +18,6 @@ Directly copy DATA in __DATA_const and __DATA_dirty(not including the segment he
 
 >Number of sections
 
-Then put two new LC_SEGMENT right after the new __DATA to fill the space.
+Then put two new LC_SEGMENT right after the new __DATA to fill the space.(Not Finished)
 
->>./FoundationForPoke IS A HAND-CRAFTED DEMO FOR THE RESULT,ALSO THE ADDRESS CALCULATION WENT WRONG SOMEWHERE
+>>New __DATA generate still has error,

@@ -4,6 +4,7 @@ from macholib import mach_o
 import macholib.ptypes
 import os
 import sys
+#https://github.com/opensource-apple/cctools/blob/fdb4825f303fd5c0751be524babd32958181b3ed/libstuff/ofile.c Line 3629
 sectForAppend=list()#A List of {sect.offset,sect.size,lcsize}
 commandSizeForAppend=list()
 def main(exePath):
@@ -55,12 +56,6 @@ def spliceHeadersAndRawStuff(header, name):
     rawStuff.close()
     
     return
-
-
-def replaceDATA(Header):
-	print "Unimplemented"
-	print sectForAppend
-	#sectForAppend is the offset and size for the segments,add these data to the original __DATA ,following with 2 useless LC_LOAD_COMMAND
 def FixMachO(Header):
 	for i in range(0,len(Header.commands)):
 		LC,cmd, data = Header.commands[i]
@@ -90,18 +85,14 @@ def IterateLCInHeader(Header):
 	for i in range(0,len(Header.commands)):
 		LC,cmd, data = Header.commands[i]
 		if(type(cmd) == mach_o.segment_command or type(cmd) == mach_o.segment_command_64):
-			if(str(cmd.segname).replace("\0", "")=="__DATA_DIRTY" or str(cmd.segname).replace("\0", "")=="__DATA_CONST"):
-				print "Found",cmd.segname
-				for sect in data:
-					print "Adding Segment Name:",sect.segname,"SectName:",sect.sectname
-					lcsize=len(sect.segname)+len(sect.sectname)+4*9
-					#Size of names + nine properties
-					print "Segment LC Size:",lcsize
-					sectForAppend.append([sect.offset,sect.size,lcsize])
-			else:
-				print "Skip",cmd.segname
+			if("__DATA" in str(cmd.segname).replace("\0", "")):
+				for seg in data:
+					print "Collecting Info For:",seg.segname,"/",seg.sectname
+					dict={"SectName":seg.sectname,"SegName":seg.segname,""}
+		
+
 		else:
-			print "Not Segment Command"
+			print "Not __DATA Segment Command"
 
 
 

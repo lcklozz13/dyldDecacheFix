@@ -63,7 +63,7 @@
       </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
-            argument = "/Users/Naville/Desktop/Development/dyld/IOKit"
+            argument = "/Users/Naville/Desktop/Development/dyld/Foundation"
             isEnabled = "YES">
          </CommandLineArgument>
       </CommandLineArguments>
